@@ -1,0 +1,20 @@
+[
+  {
+    "pk": 1, 
+    "model": "contact.contactconfig", 
+    "fields": {
+      "analytics_contactame": "", 
+      "exito_texto": "<p>Muchas gracias</p>", 
+      "actualizado_el": "2012-03-14 18:43:18", 
+      "contacto_titulo": "Contactar", 
+      "contacto_imagen": "contacto/contacto.jpg", 
+      "contacto_texto": "<p>Contacta con nosotros</p>", 
+      "analytics_contacto": "", 
+      "exito_titulo": "Gracias", 
+      "creado_el": "2012-03-14 18:38:03", 
+      "exito_imagen": "contacto/contacto_1.jpg", 
+      "contacto_analytics": "<script type=\"text/javascript\">\r\n$('#colored').css('color', 'red');\r\n</script>", 
+      "exito_analytics": ""
+    }
+  }
+]

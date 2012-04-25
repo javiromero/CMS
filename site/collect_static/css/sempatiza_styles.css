@@ -1,0 +1,607 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+
+/* FONTS ******
+
+font-family: 'Love Ya Like A Sister', cursive;
+font-family: 'Lekton', sans-serif;
+font-family: 'Quattrocento Sans', sans-serif;
+
+
+Naranja:
+color:#fe481a;
+
+Azul:
+color:#0061fe;
+*/
+
+
+/* GENERICOS ******/
+
+.none{
+	display:none !important;	
+}
+
+/* Colores */
+
+
+.naranja{color:#fe481a;}
+.azul{color:#0061fe;}
+.rojo{color:#ff4013;}
+.amarillo{color:#fffc40;}
+.verde{color: #77bb3f;}
+
+
+
+/* ESTRUCTURA BASE ******/
+
+#arriba, #abajo, #cuerpo{
+	width:100%;
+	float:left;
+}
+
+#izquierda, #centro, #derecha{ 
+	min-height:610px; 
+	padding-top:10px !important;}
+		
+#centro{ padding-top:0 !important; padding-bottom:15px !important; min-height:640px;}
+
+.container{
+	width:960px;
+	float:none;
+	margin:0 auto;	
+}
+
+#cuerpo{
+	background: #f3f3f3;
+}
+
+
+.centro_fondo{
+	float:left;
+	padding: 0 6px;
+	background:#fff;
+}
+
+#centro{
+	width:508px;
+	float:left;
+	padding:0px 10px;
+	overflow:hidden;
+	background:#fff;
+	border-left:1px solid #c0c0c0;
+	border-right:1px solid #c0c0c0;
+}
+
+
+/* ARRIBA ******/
+
+#arriba{
+	width:100%;	
+}
+
+	#arriba h1{
+		width:238px;
+		float:left;
+		padding: 28px 0;
+		text-align:center;
+	}
+	
+	#arriba h1 span{ display:none;}
+	
+	#arriba p{
+		float: right;
+		padding:30px 0;
+		font-size:1.4em;
+		line-height:1.3em;
+		text-align:right;
+		padding-bottom:10px;
+		font-weight:bold;
+		font-family: 'Lekton', sans-serif;
+}
+
+/* IZQUIERDA ******/
+
+#izquierda{
+	width:238px;
+	padding:0px 0 0 0;
+	float:left;
+	background:#f3f3f3;
+}
+
+#izquierda h2{
+	width:238px;
+	float:left;
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-weight:bold;
+	font-size:1.4em;
+	padding-top:3px;
+	padding-bottom:6px;
+}
+
+#izquierda ul{
+	font-family: 'Lekton', sans-serif;
+	padding:4px 0 12px 0;
+	margin:0;
+	float:left;
+}
+
+#izquierda ul ul{
+	margin:0;
+	padding:0 0 6px 0;	
+}
+
+#izquierda ul li{
+	width:238px;
+	margin:0 !important;
+	padding:0 !important;	
+	width: 100%;
+	clear:both;
+}
+
+#izquierda ul li a{
+	text-decoration:none;
+	line-height:1em;
+	font-size:1.3em;
+	color: #000;
+}
+
+#izquierda ul li a:hover{
+	text-decoration:underline;	
+}
+
+#izquierda ul li span{
+	font-size: 1.1em;
+	height:14px;
+	clear:both;
+	padding-right:13px;
+	background:url(../img/bullet_menu1.gif) no-repeat right 3px;
+}
+
+#izquierda ul li li{
+	width:238px;
+}
+
+#izquierda ul li li a{
+	float:left;
+	margin-bottom:5px;
+	color:#fe481a;
+	}
+
+
+/* DERECHA ******/
+
+#derecha{
+	width:178px;
+	float:left;
+	overflow:hidden;
+	background:#f3f3f3;
+}
+
+#derecha h2{
+	width:168px;
+	float:left;
+	font-family: 'Lekton', sans-serif;
+	font-weight:bold;
+	font-size: 1.2em;
+	color:#fe481a;
+	clear:both;
+	padding:20px 0 10px 10px;
+}
+
+#derecha .telefono{
+	width:168px;
+	float:left;
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:2.5em;
+	padding:20px 0 0px 10px;
+	display:block;
+	text-align:center;
+}
+
+
+#derecha .menu ul{
+	width:172px;
+	float:left;
+	margin:0;
+	padding:0 0 0 6px;
+	list-style:none;
+}
+
+#derecha .menu ul li{
+	float:left;
+	margin:0 !important;
+}
+
+#derecha .menu ul li img{
+	width:51px;
+	height:51px;
+}
+
+#derecha .menu ul li a{
+	border:1px solid #999; 
+	float:left;	
+	margin:0 0px 4px 4px;
+}
+
+
+#derecha .menu ul li a:hover{border:1px solid #fe481a;}
+
+
+#derecha .contacto_rapido{
+	width:178px;
+	float:left;	
+}
+
+#derecha label{
+	padding:0 0 0 10px;	
+}
+
+#derecha input[type="text"], #derecha input[type="button"], #derecha input[type="submit"], #derecha textarea{
+	width:158px;
+	margin:0 0 5px 8px;
+	padding:10px 5px;
+	color: #999999;
+	font-size:1.1em;
+	font-family: 'Lekton', sans-serif !important;
+}
+
+#derecha textarea{
+	height:30px;
+}
+
+#derecha input[type="submit"], #derecha input[type="button"]{
+	width:170px;
+	margin:15px 0 0 8px;
+	background:#fe481a;
+	border:none;
+	color:#fff;
+	font-size:2em;
+}
+
+#derecha input[type="checkbox"]{
+	display:inline-block; 
+	margin-left:8px;
+	}
+	
+#derecha label{
+	display:inline; 	
+	font-family: 'Lekton', sans-serif;
+	font-size:1.1em;
+	font-weight:normal;
+}
+
+
+/* ABAJO ******/
+
+#abajo{
+	padding:10px 0 0 0;
+	font-family: 'Lekton', sans-serif;	
+	font-size: 1.1em;
+}
+
+#abajo ul{
+	float:left;
+	padding:0 0 0 258px !important;
+}
+
+#abajo ul li{
+	float:left;
+}
+
+#abajo ul li a{
+	color:#000;
+	padding:0 5px;
+	border-right: 1px solid #000;
+	text-decoration:none;
+}
+
+#abajo ul li a:hover{
+	text-decoration:underline;	
+}
+
+#abajo span{
+	float:left;
+	padding:3px 0 0 5px;
+}
+
+
+
+/* SLIDER  ******/
+
+
+.slides_container {
+	width:490px;
+	height:595px;
+	float:left;
+	padding:0 0 10px 0;
+	display:none;
+}
+
+.slides_container div {
+	width:490px;
+	height:595px;
+	display:block;
+}
+
+#slides .pagination{
+	width:18px;
+	float:left;
+	padding:0;
+}
+
+#slides .pagination li{
+	margin:0 !important;
+	padding:0 !important;
+	list-style:none;	
+}
+
+
+#slides .pagination li a {
+	width:18px;
+	height:18px;
+	float:left;
+	margin:0 0 5px 0;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	background:#fff;
+	color:#fff;
+	border:1px solid #fe481a;
+}
+
+#slides .pagination li.current a {
+	background:#fe481a !important;
+	color:#fe481a !important;
+}
+
+
+#slides .texto{
+	width:320px;
+	margin:180px 0 0 100px;
+	display:block;
+	text-align:right;
+	color:#0061fe;
+        position: absolute;
+        top: 0px;
+}
+
+#slides .texto p, #slides .texto a{
+	font-size:1.8em;
+	line-height:1.8em;
+	font-family: 'Love Ya Like A Sister', cursive !important;	
+}
+
+#slides .texto a{
+	border-radius: 10px;	
+}
+
+/* CENTRO ******/
+
+#centro .h1_derecha{
+	font-size:1.2em;
+	line-height:2.2em;
+	display:block;
+	font-family: 'Love Ya Like A Sister', cursive;
+}
+
+#centro .h1_derecha strong{
+	width:150px;
+	text-align:center;
+	display:block;
+	right: 0;
+	padding:0 5px;
+	margin:0 0 0 340px;
+	border:1px solid  #CCCCCC;
+}
+
+#centro .h1_izquierda{
+	font-size:1.6em;
+	font-weight:bold;
+	margin:5px 10px;
+	font-family: 'Quattrocento Sans', sans-serif;
+}
+
+#centro h2{
+	padding: 5px 0 10px 30px;
+	font-size:1.4em;
+	font-family: 'Lekton', sans-serif;
+	border-bottom:1px solid #CCCCCC;
+}
+
+#centro h3{
+	padding:0 !important;
+	margin:10px 0 !important;
+	font-size:1.1em;
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-weight:bold;
+}
+
+.migas{
+	width:500px;
+	font-size:1.1em;
+	padding:7px;
+	display:block;
+	color:#666;
+	font-family: 'Lekton', sans-serif;
+}
+
+#centro .migas a{color:#999;}
+#centro .migas a:hover{color:#666;}
+
+#centro .texto{
+	font-size:1.2em;
+	line-height: 1.2em;
+	padding:10px 30px;
+	font-family: 'Lekton', sans-serif;
+}
+
+#centro ul{
+	padding:10px 20px;
+}
+
+#centro ul li{
+list-style: outside disc;
+}
+
+/* ELEEMNTOS GENERICOS ******/
+
+.boton{
+	width:158px;
+	border:none;
+	color:#fff;
+	font-size:1.2em;
+	margin:10px 0px;
+	padding:5px 10px;
+	color: #fff;
+	text-decoration:none;
+	font-family: 'Lekton', sans-serif !important;
+	font-weight:bold;
+	border:1px solid #fff;
+	background-repeat:no-repeat;
+}
+
+.boton:hover{ border-color: #000 !important;}
+
+.boton_izquierda{ background-image:url(../img/boton_menos.png); background-position: left center; padding-left:15px;}
+.boton_derecha{ background-image:url(../img/boton_mas.png);  background-position: right center; padding-right:15px;}
+
+.boton_naranja{background-color:#fe481a;}
+.boton_verde{background-color:#96d35f; border-color:#7ab147 !important;}
+.boton_azul{background-color:#0061fe; border-collapse:#0061fe !important;}
+
+.botonera .boton{
+	width:120px;
+	float:left;
+	text-align:center;
+	margin:20px 20px;
+}
+
+.botonera{
+	margin-left:40px;	
+}
+
+/* DIVISIONES ******/
+
+.division .izquierda, .division .derecha{
+	width: 223px;
+	float:left;	
+}
+
+.division .izquierda{
+
+}
+
+
+.division .derecha{
+
+}
+
+/* CONTACTO ******/
+
+#centro .contacto{
+	float:left;
+	background:url(../img/contacto.jpg) no-repeat bottom left;
+}
+
+#centro .contacto input[type="text"], #centro .contacto textarea{
+	border-color: #fe481a;
+	color: #999;
+	margin:0 0 10px 0;
+}
+
+#centro .contacto label{
+	display:inline;
+	font-weight:normal;	
+}
+
+#centro .contacto input[type="checkbox"]{
+	display:inline-block; 
+	margin:0px 5px 0 0;
+	}
+	
+#centro .contacto input[type="submit"], #centro .contacto input[type="button"]{
+	width:220px;
+}
+
+#centro .contacto .izquierda h2{
+	border:none;
+	padding:10px 0;
+	text-align:center;
+	font-family: 'Love Ya Like A Sister', cursive;
+}
+
+#centro .contacto .izquierda h3{
+	margin:0 !important;
+	padding: 15px 0 5px 0 !important;
+}
+
+
+#centro .contacto .izquierda p{
+	margin:0;
+	padding:0 0 0 10px;	
+}
+
+/* DIVISION 3 BLOQUES ******/
+
+.cuadros{
+	float:left;
+	padding:20px 0px 0 10px;
+}
+
+.cuadros h2{
+	font-family: 'Lekton', sans-serif;
+	font-weight:bold;
+	border:none !important;
+	text-align:center;
+	margin:0 !important;
+	padding:0 !important;
+}
+
+.cuadros h3{
+	text-align:center;
+	font-family: 'Quattrocento Sans', sans-serif !important;	
+}
+
+.cuadros a{
+	padding:5px 10px 5px 5px;
+	margin:0 0 10px 0;
+	text-align:center;
+	color:#fff;
+	font-size:1.5em;
+	line-height:1.2em;
+	display:block;
+	text-decoration:none;
+	background-image: url(../images/index/boton_mas.png);
+	background-position:right center;
+	background-repeat: no-repeat;
+	font-family: 'Love Ya Like A Sister', cursive !important;
+}
+
+.cuadros p{
+	font-size:1.1em;
+	padding:0 5px;
+	font-family: 'Lekton', sans-serif;	
+}
+
+.division_tres .item{
+	width:156px;
+	float:left;
+	padding:0 10px 20px 0;
+}
+
+.cuadros_naranja h2{color:#fe481a;}
+.cuadros_naranja a{background-color:#fe481a;}
+
+.cuadros_morado h2{color:#e63b7a;}
+.cuadros_morado a{background-color:#e63b7a;}
+
+.cuadros_verde h2{ color:#4d7a28;}
+.cuadros_verde a{ background-color:#4d7a28;}
+
+.cuadros_azul h2{ color:#1748b1;}
+.cuadros_azul a{ background-color:#1748b1;}
+
+.cuadros_marron h2{ color:#993300;}
+.cuadros_marron a{ background-color:#993300;}

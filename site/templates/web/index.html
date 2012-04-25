@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ object.titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        <div id="slides">
+                <div class="slides_container">
+                    {% for s in slides %}
+                    <div>
+                            {% if s.titulo %}{{ s.titulo }}{% endif %}
+                            {% if s.imagen %}<img src="{{ s.imagen.url }}" alt="s.titulo" />{% endif %}
+                            {% if s.contenido %}
+                                <div class="texto">
+                                    {{ s.contenido|safe }}
+                                    {% if s.enlace %}<a href="{{ s.enlace }}" class="boton boton_azul">{{ s.enlace_texto }}</a>{% endif %}
+                                </div>
+                            {% endif %}
+                            {% if s.video %}{% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+django
+south
+sorl-thumbnail
+django-debug-toolbar
+django-mptt
+docutils
+feincms
+#PIP en local para desarrollo

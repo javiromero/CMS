@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load mptt_tags mptt_custom_tags %}
+
+{% block title %}
+{{ object.get_titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {% if object.main_image %}<img class="h1_derecha" src="{{ object.main_image.imagen.url }}" alt="{{ object.main_image.titulo }}" >{% endif %}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            {% for a in object.get_ancestors %}
+                <a href="{{ a.get_absolute_url }}">{{ a.nombre }}</a> &gt; 
+            {% empty %}
+                <span>{{ object.nombre }}</span>
+            {% endfor %}
+        </div>
+
+        <h1 class="h1_izquierda">{{ object.nombre }}</h1>
+
+        <h2>{{ object.titulo }}</h2>
+
+        <div class="texto">
+            {{ object.contenido|safe }}
+
+            {% full_tree_for_model_active web.Pagina as drilldown %}  
+            {% for node,structure in drilldown|tree_info %}
+                {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+                    <a href="{{ node.get_absolute_url }}">{{ node.nombre }}</a>
+                {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+            {% endfor %}
+
+            <ul>
+                <li><a href="{% url quienes %}">Quiénes somos</a></li>
+                <li><a href="{% url clientes %}">Clientes</a></li>
+                <li><a href="{% url subscribe_detail %}">Newsletter</a></li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="{% url proyectos %}">Proyectos</a>
+                    <ul>
+                        {% for p in pr_list %}
+                            <li><a href="{{ p.get_absolute_url }}">{{ p }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            
+        </div><!-- END .texto -->
+
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}

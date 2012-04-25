@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ object.get_titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {% if object.main_image %}<img class="h1_derecha" src="{{ object.main_image.imagen.url }}" alt="{{ object.main_image.titulo }}" >{% endif %}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            {% for a in object.get_ancestors %}
+                <a href="{{ a.get_absolute_url }}">{{ a.nombre }}</a> &gt; 
+            {% empty %}
+                <span>{{ object.nombre }}</span>
+            {% endfor %}
+        </div>
+
+        <h1 class="h1_izquierda">{{ object.nombre }}</h1>
+
+        <h2>{{ object.titulo }}</h2>
+
+        <div class="texto">
+            {{ object.contenido|safe }}
+
+            <div class="botonera">
+                <div>
+                        {% for pagina in object.hijos %}
+                        <a href="{{ pagina.get_absolute_url }}" class="boton boton_naranja">{{ pagina.nombre }}</a>
+                        {% endfor %}
+                        {% comment %}
+                        {% if object.get_previous_sibling %}<a href="{{ object.get_previous_sibling.get_absolute_url }}" class="boton boton_naranja boton_izquierda">{{ object.get_previous_sibling.nombre }}</a>{% endif %}
+                        {% if object.get_next_sibling %}<a href="{{ object.get_next_sibling.get_absolute_url }}" class="boton boton_naranja boton_derecha">{{ object.get_next_sibling.nombre }}</a>{% endif %}
+                        {% endcomment %}
+                </div>
+            </div><!-- END .botonera -->
+        </div><!-- END .texto -->
+
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}

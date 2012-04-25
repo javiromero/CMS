@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+Proyectos - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {% if object.main_image %}<img class="h1_derecha" src="{{ object.main_image.imagen.url }}" alt="{{ object.main_image.titulo }}" >{% endif %}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            <span>Proyectos</span>
+        </div>
+
+        <h1 class="h1_izquierda">Proyectos</h1>
+
+        <div class="cuadros cuadros_verde division_tres">
+            {% for object in object_list %}
+            <div class="item">
+                <a href="{{ object.get_absolute_url }}">{{ object.nombre }}</a>
+                {# <h2>{{ object.main_image.url }}</h2> #}
+                {% thumbnail object.main_image "210x120" as img %}
+                <img src="{{ img.url }}" alt="{{ object.nombre }}"/>
+                {% empty %}
+                    [No hay fotos]
+                {% endthumbnail %}
+                <h3>Cliente: {{ object.realizado_para }}</h3>
+                <p>{{ object.contenido|striptags|truncatewords:40 }}</p>
+            </div>
+            {% endfor %}
+        </div><!-- END cuadros -->
+
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sempatiza_styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lekton:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>   
+    <link rel="shortcut icon" href="{{ conf.favicon.url }}">
+
+    <title>{% block title %}{{ conf.titulo }}{% endblock %}</title>
+</head>
+<body>
+<div id="arriba">
+    <div class="container">
+	<h1>
+            <a href="{% url index %}">
+                <img src="{{ conf.logo.url }}"  alt="{{ conf.titulo }}" />
+                <span>{{ conf.titulo }}</span>
+            </a>
+        </h1>
+        <p>{{ conf.eslogan }}</p>
+    </div> <!-- END .container -->
+</div> <!-- END #arriba -->
+
+
+<div id="cuerpo">
+    <div class="container">
+        <div id="izquierda">
+                <h2>{{ conf.cat1_nombre }}</h2>
+                <ul>
+                {% for categoria in cat1 %}
+                        <li><a href="{{ categoria.get_absolute_url }}"><span>{{ categoria.menu_nombre }}</span></a>
+                            {% if categoria.menu_hijos %}
+                            <ul>
+                                {% for hijo in categoria.menu_hijos %}
+                                <li><a href="{{ hijo.get_absolute_url }}">{{ hijo.menu_nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                {% endfor %}
+                </ul>
+
+                <h2>{{ conf.cat2_nombre }}</h2>
+                <ul>
+                {% for categoria in cat2 %}
+                        <li><a href="{{ categoria.get_absolute_url }}"><span>{{ categoria.menu_nombre }}</span></a>
+                            {% if categoria.menu_hijos %}
+                            <ul>
+                                {% for hijo in categoria.menu_hijos %}
+                                <li><a href="{{ hijo.get_absolute_url }}">{{ hijo.menu_nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                {% endfor %}
+                </ul>
+
+                <h2>{{ conf.cat3_nombre }}</h2>
+                <ul>
+                {% for categoria in cat3 %}
+                        <li><a href="{{ categoria.get_absolute_url }}"><span>{{ categoria.menu_nombre }}</span></a>
+                            {% if categoria.destacados_productos %}
+                            <ul>
+                                {% for producto in categoria.destacados_productos %}
+                                <li><a href="{{ producto.get_absolute_url }}">{{ producto.nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                {% endfor %}
+                </ul>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <div id="derecha">
+            {# Banners #}
+            <div class="menu">
+                <ul>
+                    {% for b in banners %}
+                        <li><a href="{{ b.url }}"><img src="{{ b.imagen.url }}" alt="{{ b.nombre }}" /></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {# Social #}
+            <h2>¿Hablamos?</h2>
+            <div class="menu">
+                <ul>
+                    {% for s in social %}
+                    <li><a href="{{ s.enlace }}" onclick="{{ s.enlace_analytics }}"><img src="{{ s.imagen.url }}" alt="{{ s.nombre }}" /></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="telefono">{{ conf.telefono }}</div>
+            <h2>¿Prefieres que te llamemos?</h2>
+
+            <form action="{% url index %}" method="post" class="contacto_rapido">
+                {% csrf_token %}
+                {% if quick_form.errors.nombre %}<p>{{ quick_form.errors.nombre.0 }}</p>{% endif %}
+                <label for="{{ quick_form.nombre.auto_id }}" class="none">{{ quick_form.nombre.label }}</label>
+                {{ quick_form.nombre }}
+                {% if quick_form.errors.telefono %}<p>{{ quick_form.errors.telefono.0 }}</p>{% endif %}
+                <label for="{{ quick_form.telefono.auto_id }}" class="none">{{ quick_form.telefono.label }}</label>
+                {{ quick_form.telefono }}
+                {% if quick_form.errors.email %}<p>{{ quick_form.errors.email.0 }}</p>{% endif %}
+                <label for="{{ quick_form.email.auto_id }}" class="none">{{ quick_form.email.label }}</label>
+                {{ quick_form.email }}
+                {% if quick_form.errors.mensaje %}<p>{{ quick_form.errors.mensaje.0 }}</p>{% endif %}
+                <label for="{{ quick_form.mensaje.auto_id }}" class="none">{{ quick_form.mensaje.label }}</label>
+                {{ quick_form.mensaje }}
+                {% if quick_form.errors.condiciones %}<p>{{ quick_form.errors.condiciones.0 }}</p>{% endif %}
+                {{ quick_form.condiciones }}
+                <label id="label_condiciones" for="{{ quick_form.condiciones.auto_id }}">{{ quick_form.condiciones.label|safe }}</label>
+                
+                <input class="btn_send" type="submit" value="Llamadme!" {% if contact.analytics_contactame %}{{ contact.analytics_contactame|safe }}{% endif %}/>
+                <input type="hidden" name="url" value="{{ request.path }}" />
+            </form><!-- END .contacto-rapido -->
+
+            <div class="contacto_thanks" style="display: none; ">
+                <a name="#gracias" id="gracias" title="gracias"><h2 class="title-big">¡Gracias por su <br>confianza! </h2></a>
+                <div class="formu-txt">
+                    <p>Su consulta ha sido recibida. En breve nos pondremos en contacto con usted</p>
+                </div>
+            </div><!-- END .contacto-thanks -->
+
+        </div><!-- END #derecha -->
+
+    </div><!-- END .container -->
+</div><!-- END #cuerpo -->
+
+<div id="abajo">
+    <div class="container">
+	<ul>
+            <li><a href="{% url contact %}">Contacto</a></li>
+            {% for pagina in pie %}
+            <li><a href="{{ pagina.get_absolute_url }}">{{ pagina.pie_nombre }}</a></li>
+            {% endfor %}
+        </ul>
+    <span>© Sempatiza | {{ conf.direccion }} {{ conf.codigo_postal }} - {{ conf.ciudad }}</span>
+    </div><!-- END .container -->
+</div><!-- END #abajo -->
+
+<script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/JavaScript" src="{{ STATIC_URL }}js/slides.min.jquery.js"></script>
+<script type="text/JavaScript" src="{{ STATIC_URL }}js/functions.js"></script>
+<script type="text/JavaScript">
+    $(function(){
+            $('#slides').slides({
+                    preload: true,
+                    generateNextPrev: false,
+                    preload: true,
+                    preloadImage: '{{ STATIC_URL }}img/loading.gif',
+                    play: {{ conf.tiempo_diapositivas }},
+                    pause: 2500
+            });
+    });
+
+    $(document).ready(function(){
+        $(".contacto_rapido").show();
+        $(".contacto_thanks").hide();
+        $(".contacto_rapido .btn_send").live("click", "send",function() {
+            validate_rapido();
+            return false
+        });
+    });
+
+</script>
+{% block extra_body %}{% endblock %}
+{{ conf.google_analytics|safe }}
+</body>
+</html>
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ contact_data.exito_titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            <a href="{% url contact %}">{{ contact_data.contacto_titulo }}</a> &gt; 
+            <span>{{ contact_data.exito_titulo }}</span>
+        </div>
+
+        <h1 class="h1_izquierda">{{ contact_data.exito_titulo }}</h1>
+
+        <h2>{{ contact_data.exito_titulo }}</h2>
+
+        <div class="texto">
+                {{ contact_data.exito_texto|safe }}
+
+                {% if contact_data.exito_imagen %}<img class="h1_derecha" src="{{ contact_data.exito_imagen.url }}" alt="{{ contact_data.exito_titulo }}" >{% endif %}
+
+
+                <div class="botonera">
+                    <div>
+                        <a href="{% url index %}" class="boton boton_naranja boton_izquierda">Volver a la página principal</a>
+                    </div>
+                </div>
+        </div>
+
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}

@@ -4,3 +4,5 @@
 *.svn
 *.hg
 *.sqlite
+*site/media/*
+*site/static/*

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}
+Clientes - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {% if object.main_image %}<img class="h1_derecha" src="{{ object.main_image.imagen.url }}" alt="{{ object.main_image.titulo }}" >{% endif %}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            <span>Clientes</span>
+        </div>
+
+        <h1 class="h1_izquierda">Clientes</h1>
+
+        <div class="span-19 last">
+        {% for object in object_list %}
+            <div class="listado span-4 {% cycle 'append-1' 'append-1' 'append-1' 'last'%}">
+                <a href="{{ object.url }}">
+                    {% thumbnail object.logo "210x120" colorspace="GRAY" as img %}
+                        <img src="{{ img.url }}" class="alignleft" alt="{{ object.nombre }}" />
+                    {% endthumbnail %}
+                </a>
+            </div>
+            {% cycle '' '' '' '<hr class="clear prepend-top" />' %}
+        {% endfor %}
+        </div>
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block metakeywords %}{% for i in c %}{{ i.palabras_clave }}{% endfor %}{% endblock %}
+{% block metadescription %}Algunos clientes de Sempatiza{% endblock %}
+{% block metarobots %}noindex, nofollow{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ contact_data.contacto_titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {#{% if contact_data.contacto_imagen %}<img class="h1_derecha" src="{{ contact_data.contacto_imagen.url }}" alt="{{ contact_data.contacto_titulo }}" >{% endif %}#}
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            <span>{{ contact_data.contacto_titulo }}</span>
+        </div>
+
+        <h1 class="h1_izquierda">{{ contact_data.contacto_titulo }}</h1>
+
+        <h2>{{ contact_data.contacto_titulo }}</h2>
+
+        <div class="texto">
+            {{ contact_data.contacto_texto|safe }}
+
+            <div class="division contacto" style="background: url({{ contact_data.contacto_imagen.url }}) no-repeat bottom left">
+                <div class="izquierda">
+                    <h2>Sem<span class="naranja">patiza</span></h2>
+                    {% regroup conf.contactdata_set.all by ciudad as contact_city %}
+
+                    {% for city in contact_city %}
+                        <h3>{{ city.grouper }}</h3>
+                        {% for data in city.list %}
+                            <p>{{ data.direccion }}</p>
+                            <p>{{ data.codigo_postal }}</p>
+                            <p>{{ data.ciudad }}</p>
+                        {% endfor %}
+                    {% endfor  %}
+                </div><!-- END .izquierda -->
+                
+                <div class="derecha">
+                    <h3>Dinos qué necesitas</h3>
+                    <form class="contact" action="." method="POST">
+                        {% csrf_token %}
+                        {% if form.errors.nombre %}{{ form.errors.nombre.0 }}{% endif %}
+                        {{ form.nombre }}
+
+                        {% if form.errors.email %}{{ form.errors.email.0 }}{% endif %}
+                        {{ form.email }}
+
+                        {% if form.errors.mensaje %}{{ form.errors.mensaje.0 }}{% endif %}
+                        {{ form.mensaje }}
+                        
+                        {% if form.errors.condiciones %}{{ form.errors.condiciones.0 }}{% endif %}
+                        {{ form.condiciones }}
+                        <label id="label_condiciones" for="{{ form.condiciones.auto_id }}">{{ form.condiciones.label|safe }}</label>
+                        
+                        <input type="submit" class="boton btn_send boton_verde" {% if contact.analytics_contacto %}{{ contact.analytics_contacto|safe }}{% % endif %}>
+                    </form>
+                    
+                    <iframe width="220" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.pe/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Av.+de+Am%C3%A9rica+45+-+Granada&amp;aq=&amp;sll=-9.19345,-75.00284&amp;sspn=34.740458,43.066406&amp;ie=UTF8&amp;hq=&amp;hnear=Av+de+Am%C3%A9rica,+45,+18008+Granada,+Andaluc%C3%ADa,+Espa%C3%B1a&amp;ll=37.160494,-3.594745&amp;spn=0.006746,0.010514&amp;t=m&amp;z=14&amp;output=embed"></iframe><br>
+                </div><!-- END .derecha -->
+            </div><!-- END division_contacto -->
+        </div><!-- END .texto -->
+
+
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/JavaScript">
+    $(document).ready(function(){
+        $(".contact .btn_send").live("click", "send",function() {
+            validate_contact();
+            return false
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ object.titulo|striptags }}{{ block.super }}{% endblock %}
+
+{% block headbanner %} 
+    {% autoescape off %}
+    <div class="content-banner">
+      <div class="content-banner-container">
+        <div class="content-banner-title">
+          <h2>{{ object.titulo }}</h2>
+          {{ object.resumen }}
+        </div>
+        <div class="bannner-pic">
+            {% if object.imagen %}
+                <img src="{{MEDIA_URL}}/{{ object.imagen }}" alt="{{ object.titulo }}" />
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endautoescape %}
+{% endblock %}
+
+{% block category %}
+<!--# breadcrumb-->
+<div class="breadcrumb"><a style="color:#E31B1E;" href="/">Incicio</a>  &gt; <a style="color:#E31B1E;" href="/quienes">Quiénes somos</a>  &gt; <a href="{{ object.get_absolute_url }}">{{ object.nombre }} sectorial</a></div>
+
+<!--Start: Round box-->
+<div class="content-round-box">
+  <div class="content-round-top">
+    <div class="content-round-bot"> 
+      
+      <!--Start: Left Col-->
+        {% leftdep %}
+      <!--End: Left Col--> 
+      
+      <!--Start: Content-->
+        {% autoescape off %}
+        <div class="categories-content">
+            <h1>{{ object.titulo }}</h1>
+            
+            {%for equipo in equipos %}
+            <div class="enq-block">
+              <div class="enq-img"><img src="{{MEDIA_URL}}/{{ equipo.imagen }}" alt="" /></div>
+              <div class="enq-content">
+                <h3>{{ equipo.nombre }} <a href="{{ equipo.direccion }}"><img src="{{MEDIA_URL}}images/in-icon.gif" alt="" class="in"/></a></h3>
+                <span class="bold">{{ equipo.titulo }}</span>
+                {{ equipo.contenido }}
+              </div>
+              <div class="clear"></div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endautoescape %}
+      <!--End: Content-->
+      
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<!--End: Round box--> 
+{% endblock %}
+
+{% block contenido %}
+<div class="bottom-content-box"> 
+  {% include "contactbox.html" %}
+  <div class="clear"></div>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript">
+	$('#slides').slides({
+		preload: true,
+		preloadImage: '{{MEDIA_URL}}/images/loading.gif',
+		play: 13000,
+		pause: 13000,
+		hoverPause: true,
+	});
+</script>
+{% endblock %}
+{% block metatitle %}{% for i in c %}{{ i.titulo }}{% endfor %}{% endblock %}
+{% block metakeywords %}{% for i in c %}{{ i.palabras_clave }}{% endfor %}{% endblock %}
+{% block metadescription %}{% for i in c %}{{ i.descripcion }}{% endfor %}{% endblock %}
+{% block metarobots %}{% for i in c %}{{ i.get_robots_display }}{% endfor %}{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}
+{{ object.titulo }} - {{ block.super }}
+{% endblock %}
+
+{% block headbanner %} 
+    {% autoescape off %}
+    <div class="content-banner">
+      <div class="content-banner-container">
+      {% if object %}
+        <div class="content-banner-title">
+          <h2>{{ object.titulo }}</h2>
+          {{ object.resumen }}
+        </div>
+        <div class="bannner-pic">
+            {% if object.imagen %}
+                <img src="{{MEDIA_URL}}/{{ object.imagen }}" alt="{{ object.titulo }}" />
+            {% endif %}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+    {% endautoescape %}
+{% endblock %}
+
+{% block content %}
+<div class="centro_fondo">
+    <div id="centro">
+        {# <h1 class="h1_derecha"><strong><span class="azul">g</span><span class="rojo">o</span><span class="amarillo">o</span><span class="azul">g</span><span class="verde">l</span><span class="rojo">e</span> analytics</strong></h1> #}
+        {% if object.main_image %}<img class="h1_derecha" src="{{ object.main_image.imagen.url }}" alt="{{ object.main_image.titulo }}" >{% endif %}
+
+        <div class="migas">
+            <a href="{% url index %}">Home</a> &gt; 
+            <span>{{ object.titulo }}</span>
+        </div>
+
+        <h1 class="h1_izquierda">{{ object.titulo }}</h1>
+
+        <!--Start: Round box-->
+        <div class="content-round-box">
+        <div class="content-round-top">
+            <div class="content-round-bot"> 
+            
+            
+            <!--Start: Content-->
+                {% autoescape off %}
+                <div class="categories-content">
+                    {% if object %}
+                    <h1>{{ object.titulo }}</h1>
+                    {% endif %}
+                    
+                    {%for equipo in equipos %}
+                    <div class="enq-block">
+                    <div class="enq-img"><img src="{{MEDIA_URL}}/{{ equipo.imagen }}" alt="{{ equipo.nombre }}" /></div>
+                    <div class="enq-content">
+                        <h3>{{ equipo.nombre }} <a href="{{ equipo.direccion }}"><img src="{{MEDIA_URL}}/images/in-icon.gif" alt="LINKEDIN" class="in"/></a></h3>
+                        <span class="bold">{{ equipo.titulo }}</span>
+                        {{ equipo.contenido }}
+                    </div>
+                    <div class="clear"></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endautoescape %}
+            <!--End: Content-->
+            
+            <div class="clear"></div>
+            </div>
+        </div>
+        </div>
+        <!--End: Round box--> 
+    </div><!-- END centro -->
+</div><!-- END centro_fondo -->
+{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript">
+	$('#slides').slides({
+		preload: true,
+		preloadImage: '{{MEDIA_URL}}/images/loading.gif',
+		play: 13000,
+		pause: 13000,
+		hoverPause: true,
+	});
+</script>
+{% endblock %}
+{% block metatitle %}{% for i in c %}{{ i.titulo }}{% endfor %}{% endblock %}
+{% block metakeywords %}{% for i in c %}{{ i.palabras_clave }}{% endfor %}{% endblock %}
+{% block metadescription %}{% for i in c %}{{ i.descripcion }}{% endfor %}{% endblock %}
+{% block metarobots %}{% for i in c %}{{ i.get_robots_display }}{% endfor %}{% endblock %}
