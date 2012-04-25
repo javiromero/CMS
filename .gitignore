@@ -1,0 +1,6 @@
+*.bak
+*~
+*.pyc
+*.svn
+*.hg
+*.sqlite
